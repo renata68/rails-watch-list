@@ -11,8 +11,10 @@
 # 1. Clean the database 🗑️
 puts "Cleaning database..."
 Movie.destroy_all
+Bookmark.destroy_all
+List.destroy_all
 
-# 2. Create the instances 🏗️
+# 2. Seed movies🏗️
 puts "Creating movies..."
 
 
@@ -24,5 +26,15 @@ movie = Movie.create!(title: "Titanic", overview: "101-year-old Rose DeWitt Buka
 puts "Created #{movie.title}"
 movie = Movie.create!(title: "Ocean's Eight", overview: "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull off the heist of the century.", poster_url: "https://image.tmdb.org/t/p/original/MvYpKlpFukTivnlBhizGbkAe3v.jpg", rating: 7.0)
 
-# 3. Display a message 🎉
 puts "Finished! Created #{Movie.count} movies."
+
+# 3. Seed lists
+puts "Creating lists..."
+my_favorites = List.create!(name: "My Favorite Movies")
+puts "Created list: #{my_favorites.name}"
+
+# 4. Seed bookmarks (link movies to list)
+puts "Creating bookmarks..."
+Bookmark.create!(movie: wonder_woman, list: my_favorites, comment: "Awesome movie!")
+Bookmark.create!(movie: shawshank, list: my_favorites, comment: "Classic!")
+puts "Created #{Bookmark.count} bookmarks."
