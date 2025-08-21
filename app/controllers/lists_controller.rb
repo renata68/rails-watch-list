@@ -4,6 +4,7 @@ class ListsController < ApplicationController
   end
   def show
     @list = List.find(params[:id])
+    @bookmark = Bookmark.new
   end
 
   def new
@@ -13,9 +14,9 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     if @list.save
-      redirect_to lists_path
+      redirect_to lists_path(@list)
     else
-      render :new
+      render :new, status: :unprocesable_entity # souvislosti s validacemi a pozor na to tohle vysvetlit priste je to slozite
     end
   end
 
@@ -25,4 +26,3 @@ class ListsController < ApplicationController
     params.require(:list).permit(:name)
   end
 end
-

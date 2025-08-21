@@ -3,5 +3,6 @@
 <ul>
   <% @lists.each do |list| %>
     <li><%= list.name %>, <%= list.movies.size %> movies</li>
+    <%= link_to 'visit', lists_path(list) %>
   <% end %>
 </ul>
