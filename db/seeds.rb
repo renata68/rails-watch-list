@@ -31,6 +31,7 @@ puts "Finished! Created #{Movie.count} movies."
 # 3. Seed lists
 puts "Creating lists..."
 my_favorites = List.create!(name: "My Favorite Movies")
+my_boyfriends_favorite = List.create!(name: "My Boyfriend's Favourite Movies")
 puts "Created list: #{my_favorites.name}"
 
 # 4. Seed bookmarks (link movies to list)
