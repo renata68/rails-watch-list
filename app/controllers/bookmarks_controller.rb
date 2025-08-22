@@ -1,4 +1,8 @@
 class BookmarksController < ApplicationController
+  def index
+    @list = List.find(params[:list_id])
+    @bookmarks = @list.bookmarks
+  end
   def new
     @list = List.find(params[:list_id])
     @bookmark = Bookmark.new
@@ -14,5 +18,10 @@ class BookmarksController < ApplicationController
   end
   def bookmark_params
     params.require(:bookmark).permit(:comment)
+  end
+  def destroy
+    @bookmark = Bookmark.find(params[:id])
+    @bookmark.destroy
+  redirect_to list_path(@bookmark.list), status: :see_other
   end
 end
